@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'underscore';
-import { list_products } from 'src/app/data';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-page-accueil',
@@ -9,18 +9,29 @@ import { list_products } from 'src/app/data';
 })
 export class PageAccueilComponent implements OnInit {
 
-  public listData = list_products;
-  public list_categories !: string [] ;
+  public datas : any[];
+  public list_categories : string[] ;
 
-  constructor() { 
-    
+  constructor(private dataService: DataService) { 
+    this.datas = [];
+    this.list_categories = [];
   }
 
   ngOnInit(): void {
-    
-    this.list_categories = _.uniq(_.pluck(this.listData, "product_breadcrumb_label")) ;
-    //this.list_categories = _.uniq(this.listData.map(product => product.product_breadcrumb_label));
-    
+
+
+    this.dataService.getData().subscribe(
+      (data: any[]) => {
+
+      this.datas = data;
+      //this.list_categories = _.uniq(this.datas.map(product => product.product_breadcrumb_label));
+      this.list_categories = _.uniq(_.pluck(data, "product_breadcrumb_label")) ;
+      console.log(this.datas);
+
+      this.datas.length = 20;
+      
+    });
+
   };
     
 

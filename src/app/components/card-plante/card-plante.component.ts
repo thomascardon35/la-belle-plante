@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-card-plante',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardPlanteComponent implements OnInit {
 
+  @Input() plant : any ;  
+
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

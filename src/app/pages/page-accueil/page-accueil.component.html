@@ -2,10 +2,17 @@
     <app-filter-side-bar [listCategories]="list_categories"></app-filter-side-bar>
 
     <div class="custom-main container p-3">
+        <app-icon [iconName]="'heart'"
+                [iconSize]="2"></app-icon>
+        <app-icon [iconName]="'alarm'"
+                [iconColor]="'red'"></app-icon>
+        <app-icon [iconName]="'star'"
+                [iconSize]="3"
+                [iconColor]="'orange'"></app-icon>
         <input class="form-control" 
-        type="text"
-        placeholder="Recherche ta belle plante"
-        aria-label="Input Recherche ta belle plante">
+            type="text"
+            placeholder="Recherche ta belle plante"
+            aria-label="Input Recherche ta belle plante">
 
         <div class="py-3">
             Trier par :
@@ -13,7 +20,11 @@
             <button class="btn btn-outline-success btn-sm me-2">Ordre Alpha</button>
             <button class="btn btn-outline-success btn-sm me-2">Avis</button>
         </div>
-
-        <app-card-plante></app-card-plante>
+        <div class="row">
+            <div class="col" *ngFor="let data of datas">
+                <app-card-plante [plant]="data"></app-card-plante>
+            </div>
+        </div>
+        
     </div>
 </div>
