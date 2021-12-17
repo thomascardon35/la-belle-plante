@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
 
+  plantLiked$ = new Subject<any>();
   constructor(private httpClient: HttpClient) {}
 
     getData(): Observable<any[]> {

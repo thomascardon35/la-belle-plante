@@ -26,13 +26,18 @@ export class PageAccueilComponent implements OnInit {
       this.datas = data;
       //this.list_categories = _.uniq(this.datas.map(product => product.product_breadcrumb_label));
       this.list_categories = _.uniq(_.pluck(data, "product_breadcrumb_label")) ;
-      console.log(this.datas);
+      //console.log(this.datas);
 
       this.datas.length = 20;
       
     });
 
   };
+
+  onEventLike(){
+      this.dataService.plantLiked$.next('');
+      
+  }
     
 
 }

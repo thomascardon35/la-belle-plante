@@ -15,7 +15,9 @@
         </div>
         <div class="row">
             <div class="col" *ngFor="let data of datas">
-                <app-card-plante [plant]="data"></app-card-plante>
+                <app-card-plante [plant]="data" 
+                                (clickLike)="onEventLike()">
+                </app-card-plante>
             </div>
         </div>
         

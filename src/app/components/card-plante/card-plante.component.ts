@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import * as _ from 'underscore';
+import { any } from 'underscore';
 
 @Component({
   selector: 'app-card-plante',
@@ -9,11 +10,19 @@ import * as _ from 'underscore';
 export class CardPlanteComponent implements OnInit {
 
   @Input() plant : any ;  
+  @Output() clickLike = new EventEmitter;
 
-  constructor() { }
 
-  ngOnInit(): void {
+  constructor() {
+   }
 
+  ngOnInit(): void { }
+
+  
+  onClickLike(){
+    console.log('click');
+    this.clickLike.emit();
   }
+ 
 
 }
