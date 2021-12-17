@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -8,18 +9,23 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class NavBarComponent implements OnInit {
   likeCounter : number ;
+  subPlantLiked !: Subscription;
 
   constructor(private plantouneService : DataService) { 
     this.likeCounter = 0 ; 
   }
 
   ngOnInit(): void {
-    this.plantouneService.plantLiked$.subscribe(
+    this .subPlantLiked = this.plantouneService.plantLiked$.subscribe(
       ()=> {
         console.log('Get new Event from Subject');
         this.likeCounter ++;
       }
     )
+  }
+
+  ngOnDestroy(){
+    this.subPlantLiked.unsubscribe();
   }
 
 }
